@@ -1,7 +1,6 @@
 // cat.interface.ts
 export interface Cat {
   id: number;
-  name: string;
-  age: number;
-  breed: string;
+  email: string;
+  password: string;
 }

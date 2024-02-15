@@ -6,28 +6,25 @@ import { PrismaService } from '../prisma/prisma.service';
 export class CatsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(cat: Cat) {
-    const createdCat = await this.prisma.cat.create({ data: cat });
-    return { message: 'cat successfully created', data: createdCat };
-  }
-
-  async update(cat: Cat) {
-    const updatedCat = await this.prisma.cat.update({
-      where: { id: cat.id },
-      data: cat,
+  async login(cat: any) {
+    console.log(cat,'cat');
+    const result = await this.prisma.cat.findFirst({
+      where: {
+        email: cat.email,
+        password: cat.password,
+      },
     });
-    return { message: 'cat successfully updated', data: updatedCat };
+    if (!result) {
+      throw new NotFoundException('Invalid credentials');
+    }
+    if(result.password !== cat.password){
+      throw new NotFoundException('Invalid credentials Password not match');
+    }
+    return { message: 'Login successful', data: result };
   }
 
-  async delete(id: number) {
-    const deletedCat = await this.prisma.cat.delete({ where: { id } });
-    return { message: 'cat successfully deleted', data: deletedCat };
+  async register(data: any) {
+    const result = await this.prisma.cat.create({ data: data });
+    return { message: 'Register successful', data: result };
   }
-
-  async findAll(): Promise<{ message: string; data: Cat[] }> {
-    const result = await this.prisma.cat.findMany();
-    return { message: 'All cats are found', data: result };
-  }
-
-  // Implement methods for update and delete operations
 }

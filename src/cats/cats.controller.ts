@@ -12,28 +12,16 @@ import {
 import { CatsService } from './cats.service';
 import { Cat } from './cat.interface';
 
-@Controller('cats')
+@Controller('auth')
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
-  @Post()
-  create(@Body() cat: Cat) {
-    return this.catsService.create(cat);
+  @Post('login')
+  login(@Body() cat: any) {
+    return this.catsService.login(cat);
   }
-
-  @Patch()
-  update(@Body() cat: Cat) {
-    return this.catsService.update(cat);
+  @Post('register')
+  register(@Body() cat: any) {
+    return this.catsService.register(cat);
   }
-
-  @Delete(":id")
-  delete(@Param("id") id: string) {
-    return this.catsService.delete(+id);
-  }
-
-  @Get()
-  findAll(): any {
-    return this.catsService.findAll();
-  }
-
 }
