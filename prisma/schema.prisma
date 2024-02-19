@@ -15,3 +15,22 @@ model Cat {
   email  String @unique
   password   String
 }
+
+model Plan {
+    id    Int     @id @default(autoincrement())
+    name String
+    amount String
+    discount String
+    free_influencer_choice Boolean
+    algorithmic_influencer_prices Boolean
+    automated_ordering Boolean
+    automated_analytics Boolean
+    nano_micro_mid_influencers Boolean
+    payment_by_plastic_card Boolean
+    macro_and_Mega_influencers Boolean
+    payment_by_transfer Boolean
+    cooperation_with_barter Boolean
+    ambassador_order Boolean
+    affiliate_marketing Boolean
+    automated_smm Boolean
+}

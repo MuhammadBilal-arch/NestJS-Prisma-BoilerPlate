@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AuthModule } from './cats/cats.module';
+import { AuthModule } from './auth/cats.module';
+import { PlansModule } from './plans/plans.module';
+
 
 @Module({
-  imports: [AuthModule],
+  imports: [AuthModule,PlansModule],
+  providers: [],
 })
 export class AppModule {}
